@@ -1,0 +1,148 @@
+@font-face {
+  font-family: "ICTAvantGarde";
+  src: url("/assets/fonts/ITCAvantGardeStd-XLt.otf");
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ICTAvantGarde";
+  src: url("/assets/fonts/ITCAvantGardeStd-Bk.otf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ICTAvantGarde";
+  src: url("/assets/fonts/ITCAvantGardeStd-Md.otf");
+  font-style: medium;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ICTAvantGarde";
+  src: url("/assets/fonts/itc-avant-garde-gothic-std-bold-589572c7e9955.otf");
+  font-style: bold;
+  font-weight: 600;
+  font-display: swap;
+}
+
+
+// // 3rd-party Plugins
+// @import "~highlight.js/styles/googlecode.css";
+// @import "~perfect-scrollbar/css/perfect-scrollbar.css";
+
+// .example-highlight > pre {
+//   background: none transparent !important;
+//   margin: 0 !important;
+//   padding-top: 0.5rem;
+//   code {
+//     overflow-y: auto;
+//     display: block;
+
+//     span {
+//       background: none transparent !important;
+//     }
+//   }
+// }
+
+img,
+svg {
+  vertical-align: middle;
+}
+
+// .json > pre {
+//   background: none #fff !important;
+// }
+
+// .example-code > .json {
+//   background: none #fff !important;
+// }
+
+// .symbol.symbol-45 > svg {
+//   width: 100%;
+//   max-width: 45px;
+//   height: 45px;
+// }
+
+// .react-bootstrap-table {
+//   overflow-x: auto;
+// }
+
+// .react-bootstrap-table {
+//   th {
+//     outline: none;
+
+//     &.sortable {
+//       cursor: pointer;
+//       .svg-icon-sort {
+//         opacity: 1;
+//       }
+//     }
+//   }
+
+//   .table.table-head-custom thead tr {
+//     .sortable-active {
+//       color: $primary !important;
+//     }
+//   }
+// }
+
+// .cursor-default {
+//   cursor: default !important;
+// }
+
+// @mixin text-ellipsis {
+//   white-space: nowrap;
+//   text-overflow: ellipsis;
+//   overflow: hidden;
+// }
+
+// .text-truncate {
+//   @include text-ellipsis;
+// }
+
+// .text-break {
+//   overflow-wrap: break-word;
+//   word-wrap: break-word;
+//   word-break: break-word;
+// }
+
+// .input-feedback-text-placeholder {
+//   height: 19px;
+// }
+
+// .color-inherit {
+//   color: inherit;
+// }
+
+// .bg-table-warning {
+//   background-color: #fff8e5;
+// }
+
+// .custom-control-label::after {
+//   cursor: pointer;
+// }
+
+// .cursor-not-allowed {
+//   cursor: not-allowed !important;
+// }
+
+// input[type=number]::-webkit-inner-spin-button,
+// input[type=number]::-webkit-outer-spin-button {
+
+//   -webkit-appearance: none;
+//   margin: 0;
+// }
+// input[type=number]{
+//   -moz-appearance:textfield;
+// }
+
+// @import "modules/dashboard/Dashboard";
+// @import "modules/dashboard/Map/Map";
+// @import "modules/SPUnits/SPUnitDetails/Map/ShorePowerUnitMap";
+// @import "modules/supplypits/supplyPitDetails/components/Map/SupplyPitOperationalMap";
+// @import "modules/customers/CustomerDetails/CustomerDetails";
