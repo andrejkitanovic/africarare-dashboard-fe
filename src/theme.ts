@@ -59,6 +59,13 @@ const themeOptions: ThemeOptions = {
     },
   },
   components: {
+    MuiDialogTitle: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#363636",
+        },
+      },
+    },
     MuiPaper: {
       styleOverrides: {
         root: {

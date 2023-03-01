@@ -10,10 +10,7 @@ const RegisterPage = () => {
       p={5}
       minHeight="100vh"
       sx={{
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center center",
-        backgroundSize: "cover",
-        backgroundImage: "url('/media/auth-bg.png')",
+        backgroundColor: (t) => t.palette.background.default,
       }}
     >
       <RegisterForm />

@@ -4,8 +4,7 @@ import { UserOrgTypeRoleType } from "api/user/types";
 
 const roleLabels = {
   "portal-admin": <FormattedMessage id="ROLE.PORTAL_ADMIN" />,
-  "organisation-owner": <FormattedMessage id="ROLE.ORGANISATION_OWNER" />,
-  "organisation-employee": <FormattedMessage id="ROLE.ORGANISATION_EMPLOYEE" />,
+  "land-owner": <FormattedMessage id="ROLE.LAND_OWNER" />,
 };
 
 export const roleFormatter = (

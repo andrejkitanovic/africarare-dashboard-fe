@@ -52,7 +52,7 @@ const sidebarMenuListAdmin: SidebarMenuListChild = [
     icon: <GroupIcon />,
     text: <FormattedMessage id="HEADER.USERS" />,
     requiredPermissions: ["read:users"],
-    requiredRole: ["portal-admin", "organisation-owner"],
+    requiredRole: ["portal-admin", "land-owner"],
     link: "/users",
   },
 ];

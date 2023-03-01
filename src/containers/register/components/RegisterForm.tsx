@@ -84,7 +84,7 @@ const RegisterForm = () => {
 
   return (
     <Paper sx={{ borderRadius: 1, width: "420px" }}>
-      <Box py={2} borderBottom="1px solid rgba(172, 172, 172, 0.2);">
+      <Box py={2} pt={2.5} borderBottom="1px solid rgba(172, 172, 172, 0.2);">
         <Typography textAlign="center" fontWeight="bold" variant="h4">
           <FormattedMessage id="REGISTER.FORM.TITLE" />
         </Typography>

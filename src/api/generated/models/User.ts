@@ -57,7 +57,6 @@ export namespace User {
    */
   export enum role {
     PORTAL_ADMIN = "portal-admin",
-    ORGANISATION_OWNER = "organisation-owner",
-    ORGANISATION_EMPLOYEE = "organisation-employee",
+    LAND_OWNER = "land-owner",
   }
 }

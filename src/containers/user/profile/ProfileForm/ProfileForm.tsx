@@ -61,10 +61,7 @@ const ProfileForm = () => {
 
   const profileRole = {
     "portal-admin": intl.formatMessage({ id: "ROLE.PORTAL_ADMIN" }),
-    "organisation-owner": intl.formatMessage({ id: "ROLE.ORGANISATION_OWNER" }),
-    "organisation-employee": intl.formatMessage({
-      id: "ROLE.ORGANISATION_EMPLOYEE",
-    }),
+    "land-owner": intl.formatMessage({ id: "ROLE.LAND_OWNER" }),
   };
 
   return (

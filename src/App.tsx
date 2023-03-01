@@ -54,7 +54,7 @@ export default function App() {
           path="/users"
           component={UsersPage}
           breadcrumbs={[{ translationId: "HEADER.USERS", pathname: "/users" }]}
-          requiredRole={["portal-admin", "organisation-owner"]}
+          requiredRole={["portal-admin", "land-owner"]}
           requiredPermissions={["read:users"]}
         />
 
