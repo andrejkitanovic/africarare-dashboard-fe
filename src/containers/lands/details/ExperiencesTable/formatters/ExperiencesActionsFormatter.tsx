@@ -1,4 +1,5 @@
 import {
+  AutoAwesome as AutoAwesomeIcon,
   DeleteOutlined as DeleteIcon,
   EditOutlined as EditIcon,
 } from "@mui/icons-material";
@@ -11,17 +12,29 @@ import IconButtonWithTooltip from "components/Icons/IconButtonWithTooltip";
 import { hasPermissions } from "components/stores/UserStore";
 
 interface Props<T extends {}> extends CellProps<T> {
+  handleOpenAddFeature: (ctx?: T) => void;
   handleOpenEdit: (ctx?: T) => void;
   handleOpenDelete: (ctx?: T) => void;
 }
 
 const ActionsFormatter = ({
   row,
-  handleOpenDelete,
+  handleOpenAddFeature,
   handleOpenEdit,
+  handleOpenDelete,
 }: Props<ExperiencesType>) => {
   return (
     <Box>
+      {hasPermissions("update:experiences") && (
+        <IconButtonWithTooltip
+          tooltipText={<FormattedMessage id="GLOBAL.ADD_FEATURE" />}
+          // data-testid="edit-port-button"
+          color="primary"
+          onClick={() => handleOpenAddFeature(row.original)}
+        >
+          <AutoAwesomeIcon />
+        </IconButtonWithTooltip>
+      )}
       {hasPermissions("update:experiences") && (
         <IconButtonWithTooltip
           tooltipText={<FormattedMessage id="GLOBAL.EDIT" />}
