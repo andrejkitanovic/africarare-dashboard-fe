@@ -1,4 +1,7 @@
-import { Add as AddIcon, Terrain as TerrainIcon } from "@mui/icons-material";
+import {
+  Add as AddIcon,
+  Celebration as CelebrationIcon,
+} from "@mui/icons-material";
 import { Button } from "@mui/material";
 import React, { FC } from "react";
 import { FormattedMessage } from "react-intl";
@@ -8,35 +11,35 @@ import { hasPermissions } from "components/stores/UserStore";
 import TableHeader from "components/Table/components/TableHeader";
 import { useModal } from "utils/hooks/useModal";
 
-import NewLandModal from "../LandsTable/components/NewLandModal";
+import NewExperienceModal from "../ExperiencesTable/components/NewExperienceModal";
 
-const LandsHeader: FC = () => {
+const ExperiencesHeader: FC = () => {
   const { isOpen, handleClose, handleOpen } = useModal<UsersType>();
 
   return (
     <>
       <TableHeader
-        icon={TerrainIcon}
-        label={<FormattedMessage id="LANDS.TABLE.TITLE" />}
+        icon={CelebrationIcon}
+        label={<FormattedMessage id="EXPERIENCES.TABLE.TITLE" />}
       >
-        {hasPermissions("write:lands") && (
+        {hasPermissions("write:experiences") && (
           <Button
             // data-testid="new-port-button"
             variant="contained"
             onClick={() => handleOpen()}
           >
             <AddIcon sx={{ mr: 0.5 }} />
-            <FormattedMessage id="LANDS.LANDS_FORM.NEW_FORM_TITLE" />
+            <FormattedMessage id="EXPERIENCES.EXPERIENCES_FORM.NEW_FORM_TITLE" />
           </Button>
         )}
       </TableHeader>
-      {hasPermissions("write:lands") && (
+      {hasPermissions("write:experiences") && (
         <>
-          <NewLandModal isOpen={isOpen} handleClose={handleClose} />{" "}
+          <NewExperienceModal isOpen={isOpen} handleClose={handleClose} />{" "}
         </>
       )}
     </>
   );
 };
 
-export default LandsHeader;
+export default ExperiencesHeader;

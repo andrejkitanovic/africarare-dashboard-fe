@@ -4,6 +4,7 @@ import { Redirect, Switch } from "react-router-dom";
 
 import ForgotPasswordPage from "containers/forgotPassword";
 import LandsPage from "containers/lands";
+import LandsDetailsPage from "containers/lands/details";
 import LoginPage from "containers/login";
 import OrganisationsPage from "containers/organisations";
 import OrganisationDetails from "containers/organisations/details";
@@ -47,6 +48,16 @@ export default function App() {
           path="/lands"
           component={LandsPage}
           breadcrumbs={[{ translationId: "HEADER.LANDS", pathname: "/lands" }]}
+          // requiredPermissions={[]}
+        />
+        <PrivateRoute
+          exact
+          path="/lands/:landId"
+          component={LandsDetailsPage}
+          breadcrumbs={[
+            { translationId: "HEADER.LANDS", pathname: "/lands" },
+            { translationId: "GLOBAL.DETAILS", pathname: "#" },
+          ]}
           // requiredPermissions={[]}
         />
         <PrivateRoute

@@ -44,12 +44,8 @@ const UserForm: FC<IUserForm> = ({
 
   let roleOptions = [
     {
-      value: "organisation-owner",
-      label: intl.formatMessage({ id: "ROLE.ORGANISATION_OWNER" }),
-    },
-    {
-      value: "organisation-employee",
-      label: intl.formatMessage({ id: "ROLE.ORGANISATION_EMPLOYEE" }),
+      value: "land-owner",
+      label: intl.formatMessage({ id: "ROLE.LAND_OWNER" }),
     },
   ];
 

@@ -13,6 +13,11 @@ enum Permissions {
   ORGANISATIONS_WRITE = "write:organisations",
   ORGANISATIONS_UPDATE = "update:organisations",
   ORGANISATIONS_DELETE = "delete:organisations",
+
+  EXPERIENCES_READ = "read:experiences",
+  EXPERIENCES_WRITE = "write:experiences",
+  EXPERIENCES_UPDATE = "update:experiences",
+  EXPERIENCES_DELETE = "delete:experiences",
 }
 
 export type PermissionsType = `${Permissions}`;

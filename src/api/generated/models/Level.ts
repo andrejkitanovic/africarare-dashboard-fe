@@ -2,8 +2,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { Experience } from "./Experience";
-
 export type Level = {
   /**
    * Level ID.
@@ -11,9 +9,9 @@ export type Level = {
    */
   _id: string;
   /**
-   * Assigned experience.
+   * Experience Name.
    */
-  experience: Experience;
+  name?: string;
   /**
    * Experience Scene.
    * @example test

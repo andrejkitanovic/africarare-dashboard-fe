@@ -1,33 +1,42 @@
 import { Search as SearchIcon } from "@mui/icons-material";
-import { Box, Grid, InputAdornment, TextField } from "@mui/material";
+import { Grid, InputAdornment, TextField } from "@mui/material";
 import React, { FC } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { CellProps } from "react-table";
 
-import { getLands } from "api/lands";
-import { landsKeys } from "api/lands/queries";
-import { LandsType } from "api/lands/types";
-import PreviewImageDefaultPNG from "assets/imgs/preview-image-default.png";
+import { getExperiences } from "api/experiences";
+import { experiencesKeys } from "api/experiences/queries";
+import { ExperiencesType } from "api/experiences/types";
 import { hasPermissions } from "components/stores/UserStore";
 import Table, { TableColumn } from "components/Table";
 import useRemoteTableLogic from "components/Table/useRemoteTableLogic";
 import { useModal } from "utils/hooks/useModal";
 
-import DeleteLandModal from "./components/DeleteLandModal";
-import EditLandModal from "./components/EditLandModal";
-import LandsActionsFormatter from "./formatters/LandsActionsFormatter";
-import { useLandsFilter } from "./useLandsFilter";
+import DeleteExperienceModal from "./components/DeleteExperienceModal";
+import EditExperienceModal from "./components/EditExperienceModal";
+import ExperiencesActionsFormatter from "./formatters/ExperiencesActionsFormatter";
+import { useExperiencesFilter } from "./useExperiencesFilter";
 
-interface ILandsTable {}
+interface IExperiencesTable {
+  landId: string;
+}
 
-const LandsTable: FC<ILandsTable> = () => {
+const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
   const intl = useIntl();
 
-  const { filters, searchField } = useLandsFilter();
+  const { filters, searchField } = useExperiencesFilter({
+    filter: [
+      {
+        field: "land",
+        operator: "is",
+        value: landId,
+      },
+    ],
+  });
 
   const { data, status, sortOptions, paginationOptions } = useRemoteTableLogic(
-    landsKeys.listFiltered(filters),
-    getLands,
+    experiencesKeys.listFiltered(filters),
+    getExperiences,
     filters
   );
 
@@ -36,51 +45,25 @@ const LandsTable: FC<ILandsTable> = () => {
     handleClose: handleCloseDelete,
     handleOpen: handleOpenDelete,
     context: deleteContext,
-  } = useModal<LandsType>();
+  } = useModal<ExperiencesType>();
 
   const {
     isOpen: isEditOpen,
     handleClose: handleCloseEdit,
     handleOpen: handleOpenEdit,
     context: editContext,
-  } = useModal<LandsType>();
+  } = useModal<ExperiencesType>();
 
-  const columns: TableColumn<LandsType>[] = [
-    {
-      accessor: "previewImage",
-      Header: intl.formatMessage({ id: "LANDS.TABLE.PREVIEW_IMAGE" }),
-      Cell: ({ value, row }) => (
-        <Box
-          component="img"
-          sx={{
-            objectFit: "cover",
-            mr: 1,
-          }}
-          src={value || PreviewImageDefaultPNG}
-          width="120px"
-          height="80px"
-          alt={row.original.name}
-        />
-      ),
-    },
+  const columns: TableColumn<ExperiencesType>[] = [
     {
       accessor: "name",
-      Header: intl.formatMessage({ id: "LANDS.TABLE.NAME" }),
-    },
-    {
-      accessor: "mapId",
-      Header: intl.formatMessage({ id: "LANDS.TABLE.MAP_ID" }),
-    },
-    {
-      accessor: "organisation",
-      Header: intl.formatMessage({ id: "GLOBAL.ORGANISATION" }),
-      Cell: ({ value }) => value.name,
+      Header: intl.formatMessage({ id: "EXPERIENCES.TABLE.NAME" }),
     },
     {
       id: "actions",
       Header: intl.formatMessage({ id: "GLOBAL.ACTIONS" }),
-      Cell: (cell: CellProps<LandsType>) => (
-        <LandsActionsFormatter
+      Cell: (cell: CellProps<ExperiencesType>) => (
+        <ExperiencesActionsFormatter
           {...cell}
           handleOpenEdit={handleOpenEdit}
           handleOpenDelete={handleOpenDelete}
@@ -104,7 +87,7 @@ const LandsTable: FC<ILandsTable> = () => {
                 </InputAdornment>
               ),
             }}
-            helperText={<FormattedMessage id="LANDS.TABLE.SEARCH_BY" />}
+            helperText={<FormattedMessage id="EXPERIENCES.TABLE.SEARCH_BY" />}
             {...searchField}
           />
         </Grid>
@@ -116,24 +99,24 @@ const LandsTable: FC<ILandsTable> = () => {
         pagination={paginationOptions}
         status={status}
       />
-      {hasPermissions("delete:lands") && (
+      {hasPermissions("delete:experiences") && (
         <>
-          <DeleteLandModal
+          <DeleteExperienceModal
             isOpen={isOpenDelete}
             handleClose={handleCloseDelete}
-            land={deleteContext}
+            experience={deleteContext}
           />
         </>
       )}
-      {hasPermissions("update:lands") && (
-        <EditLandModal
+      {hasPermissions("update:experiences") && (
+        <EditExperienceModal
           isOpen={isEditOpen}
           handleClose={handleCloseEdit}
-          land={editContext}
+          experience={editContext}
         />
       )}
     </>
   );
 };
 
-export default LandsTable;
+export default ExperiencesTable;

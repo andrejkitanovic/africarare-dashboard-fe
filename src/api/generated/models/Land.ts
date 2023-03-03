@@ -24,4 +24,9 @@ export type Land = {
    * @example 507f191e810c34729de860ea
    */
   mapId: string;
+  /**
+   * Land preview image.
+   * @example https://africarare-assets.appafricarare.io/files/7e8a2939-f38a-4f00-9aeb-7877697ed5ab.jpg
+   */
+  previewImage?: string;
 };
