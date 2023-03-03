@@ -2,6 +2,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { Feature } from "./Feature";
+
 export type Level = {
   /**
    * Level ID.
@@ -17,4 +19,5 @@ export type Level = {
    * @example test
    */
   scene: string;
+  features?: Array<Feature>;
 };

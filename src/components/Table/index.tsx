@@ -319,11 +319,9 @@ const Table = <T extends object>({
                 prepareRow(row);
                 return (
                   <TableRow
-                    sx={
-                      {
-                        // bgcolor: row.depth === 1 ? "grey.200" : "white",
-                      }
-                    }
+                    sx={{
+                      bgcolor: row.depth === 1 ? "grey.200" : "transparent",
+                    }}
                     {...row.getRowProps(getRowProps ? getRowProps(row) : {})}
                   >
                     {row.cells.map((cell) => {

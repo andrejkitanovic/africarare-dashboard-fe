@@ -1,6 +1,6 @@
 import { Search as SearchIcon } from "@mui/icons-material";
 import { Grid, InputAdornment, TextField } from "@mui/material";
-import React, { FC } from "react";
+import React, { FC, useCallback } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { CellProps } from "react-table";
 
@@ -60,6 +60,10 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
       Header: intl.formatMessage({ id: "EXPERIENCES.TABLE.NAME" }),
     },
     {
+      accessor: "features",
+      Header: intl.formatMessage({ id: "EXPERIENCES.TABLE.FEATURES" }),
+    },
+    {
       id: "actions",
       Header: intl.formatMessage({ id: "GLOBAL.ACTIONS" }),
       Cell: (cell: CellProps<ExperiencesType>) => (
@@ -72,6 +76,12 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
       align: "right",
     },
   ];
+
+  const getSubRows = useCallback(
+    (experienceRow: ExperiencesType) =>
+      experienceRow.levels ? (experienceRow.levels as any[]) : [],
+    []
+  );
 
   return (
     <>
@@ -98,6 +108,7 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
         sort={sortOptions}
         pagination={paginationOptions}
         status={status}
+        getSubRows={getSubRows}
       />
       {hasPermissions("delete:experiences") && (
         <>

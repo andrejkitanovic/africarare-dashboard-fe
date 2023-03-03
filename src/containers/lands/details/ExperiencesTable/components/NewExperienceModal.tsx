@@ -13,11 +13,13 @@ import ExperienceForm, { ExperienceFormValues } from "./ExperienceForm";
 interface NewExperienceModalProps {
   isOpen: boolean;
   handleClose: () => void;
+  landId: string;
 }
 
 const NewExperienceModal = ({
   isOpen,
   handleClose,
+  landId,
 }: NewExperienceModalProps) => {
   const queryClient = useQueryClient();
 
@@ -30,9 +32,12 @@ const NewExperienceModal = ({
   );
 
   const handleSubmit = async (values: ExperienceFormValues) => {
-    await addExperience(values, {
-      onSuccess: () => handleClose(),
-    });
+    await addExperience(
+      { ...values, land: landId },
+      {
+        onSuccess: () => handleClose(),
+      }
+    );
   };
 
   return (

@@ -2,7 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
+import type { Feature } from "./Feature";
 import type { Land } from "./Land";
+import type { Level } from "./Level";
 
 export type Experience = {
   /**
@@ -19,4 +21,6 @@ export type Experience = {
    * @example Africarare experience
    */
   name: string;
+  features?: Array<Feature>;
+  levels?: Array<Level>;
 };

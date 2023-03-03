@@ -13,7 +13,11 @@ import { useModal } from "utils/hooks/useModal";
 
 import NewExperienceModal from "../ExperiencesTable/components/NewExperienceModal";
 
-const ExperiencesHeader: FC = () => {
+interface IExperiencesHeader {
+  landId: string;
+}
+
+const ExperiencesHeader: FC<IExperiencesHeader> = ({ landId }) => {
   const { isOpen, handleClose, handleOpen } = useModal<UsersType>();
 
   return (
@@ -35,7 +39,11 @@ const ExperiencesHeader: FC = () => {
       </TableHeader>
       {hasPermissions("write:experiences") && (
         <>
-          <NewExperienceModal isOpen={isOpen} handleClose={handleClose} />{" "}
+          <NewExperienceModal
+            landId={landId}
+            isOpen={isOpen}
+            handleClose={handleClose}
+          />{" "}
         </>
       )}
     </>

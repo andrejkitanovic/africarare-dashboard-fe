@@ -33,7 +33,7 @@ const ExperiencesPage = () => {
       </Paper>
 
       <Paper sx={{ mt: 2 }}>
-        <ExperiencesHeader />
+        <ExperiencesHeader landId={landId} />
         <ExperiencesTable landId={landId} />
       </Paper>
     </>
