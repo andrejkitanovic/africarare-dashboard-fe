@@ -320,7 +320,7 @@ const Table = <T extends object>({
                 return (
                   <TableRow
                     sx={{
-                      bgcolor: row.depth === 1 ? "grey.200" : "transparent",
+                      bgcolor: row.depth === 1 ? "#0c0c0c" : "transparent",
                     }}
                     {...row.getRowProps(getRowProps ? getRowProps(row) : {})}
                   >

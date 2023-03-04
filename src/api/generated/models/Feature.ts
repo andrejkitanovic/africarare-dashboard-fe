@@ -22,7 +22,13 @@ export namespace Feature {
    */
   export enum type {
     ACCESS = "access",
+    PORTAL = "portal",
+    LEADERBOARD = "leaderboard",
     CHATLOG = "chatlog",
+    RESTRICTED_PEN_DRAWING = "restricted-pen-drawing",
     EXPERIENCE_AVATARS = "experience-avatars",
+    PRESENTATION = "presentation",
+    PARTICIPATION = "participation",
+    INFO_PIN = "info-pin",
   }
 }

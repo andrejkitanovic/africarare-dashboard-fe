@@ -11,7 +11,7 @@ import { hasPermissions } from "components/stores/UserStore";
 import TableHeader from "components/Table/components/TableHeader";
 import { useModal } from "utils/hooks/useModal";
 
-import NewExperienceModal from "../ExperiencesTable/components/NewExperienceModal";
+import NewExperienceModal from "../ExperiencesTable/components/ExperienceModal/NewExperienceModal";
 
 interface IExperiencesHeader {
   landId: string;
@@ -43,7 +43,7 @@ const ExperiencesHeader: FC<IExperiencesHeader> = ({ landId }) => {
             landId={landId}
             isOpen={isOpen}
             handleClose={handleClose}
-          />{" "}
+          />
         </>
       )}
     </>

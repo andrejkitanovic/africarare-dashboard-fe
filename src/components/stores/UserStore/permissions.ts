@@ -4,20 +4,30 @@ enum Permissions {
   USERS_UPDATE = "update:users",
   USERS_DELETE = "delete:users",
 
-  LANDS_READ = "read:lands",
-  LANDS_WRITE = "write:lands",
-  LANDS_UPDATE = "update:lands",
-  LANDS_DELETE = "delete:lands",
-
   ORGANISATIONS_READ = "read:organisations",
   ORGANISATIONS_WRITE = "write:organisations",
   ORGANISATIONS_UPDATE = "update:organisations",
   ORGANISATIONS_DELETE = "delete:organisations",
 
-  EXPERIENCES_READ = "read:experiences",
-  EXPERIENCES_WRITE = "write:experiences",
-  EXPERIENCES_UPDATE = "update:experiences",
-  EXPERIENCES_DELETE = "delete:experiences",
+  LAND_READ = "read:lands",
+  LAND_WRITE = "write:lands",
+  LAND_UPDATE = "update:lands",
+  LAND_DELETE = "delete:lands",
+
+  EXPERIENCE_READ = "read:experiences",
+  EXPERIENCE_WRITE = "write:experiences",
+  EXPERIENCE_UPDATE = "update:experiences",
+  EXPERIENCE_DELETE = "delete:experiences",
+
+  LEVEL_READ = "read:levels",
+  LEVEL_WRITE = "write:levels",
+  LEVEL_UPDATE = "update:levels",
+  LEVEL_DELETE = "delete:levels",
+
+  FEATURE_READ = "read:features",
+  FEATURE_WRITE = "write:features",
+  FEATURE_UPDATE = "update:features",
+  FEATURE_DELETE = "delete:features",
 }
 
 export type PermissionsType = `${Permissions}`;

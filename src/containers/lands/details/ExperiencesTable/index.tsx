@@ -12,16 +12,20 @@ import { getExperiences } from "api/experiences";
 import { experiencesKeys } from "api/experiences/queries";
 import { ExperiencesType } from "api/experiences/types";
 import { FeaturesType } from "api/features/types";
+import { LevelsType } from "api/levels/types";
 import { hasPermissions } from "components/stores/UserStore";
 import Table, { TableColumn } from "components/Table";
 import useRemoteTableLogic from "components/Table/useRemoteTableLogic";
 import { useModal } from "utils/hooks/useModal";
 
-import DeleteExperienceModal from "./components/DeleteExperienceModal";
-import EditExperienceModal from "./components/EditExperienceModal";
-import NewExperienceFeatureModal from "./components/NewExperienceFeatureModal";
+import DeleteExperienceModal from "./components/ExperienceModal/DeleteExperienceModal";
+import EditExperienceModal from "./components/ExperienceModal/EditExperienceModal";
+import NewExperienceFeatureModal from "./components/FeatureModal/NewExperienceFeatureModal";
+import DeleteLevelModal from "./components/LevelModal/DeleteLevelModal";
+import NewLevelModal from "./components/LevelModal/NewLevelModal";
 import ExperiencesActionsFormatter from "./formatters/ExperiencesActionsFormatter";
 import { FeatureFormatter } from "./formatters/FeaturesFormatter";
+import LevelActtionsFormatter from "./formatters/LevelActionsFormatter";
 import { useExperiencesFilter } from "./useExperiencesFilter";
 
 interface IExperiencesTable {
@@ -47,6 +51,13 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
     filters
   );
 
+  // EXPERIECNE
+  const {
+    isOpen: isAddLevelOpen,
+    handleClose: handleCloseAddLevel,
+    handleOpen: handleOpenAddLevel,
+    context: addLevelContext,
+  } = useModal<ExperiencesType>();
   const {
     isOpen: isAddFeatureOpen,
     handleClose: handleCloseAddFeature,
@@ -65,6 +76,14 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
     handleOpen: handleOpenDelete,
     context: deleteContext,
   } = useModal<ExperiencesType>();
+
+  // LEVEL
+  const {
+    isOpen: isOpenDeleteLevel,
+    handleClose: handleCloseDeleteLevel,
+    handleOpen: handleOpenDeleteLevel,
+    context: deleteLevelContext,
+  } = useModal<LevelsType>();
 
   const columns: TableColumn<ExperiencesType>[] = [
     {
@@ -105,12 +124,21 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
     {
       id: "actions",
       Header: intl.formatMessage({ id: "GLOBAL.ACTIONS" }),
-      Cell: (cell: CellProps<ExperiencesType>) => (
+      Aggregated: (cell: CellProps<ExperiencesType>) => (
         <ExperiencesActionsFormatter
           {...cell}
+          handleOpenAddLevel={handleOpenAddLevel}
           handleOpenAddFeature={handleOpenAddFeature}
           handleOpenEdit={handleOpenEdit}
           handleOpenDelete={handleOpenDelete}
+        />
+      ),
+      Cell: (cell: CellProps<LevelsType>) => (
+        <LevelActtionsFormatter
+          {...cell}
+          handleOpenAddFeature={() => {}}
+          handleOpenEdit={() => {}}
+          handleOpenDelete={handleOpenDeleteLevel}
         />
       ),
       align: "right",
@@ -150,7 +178,15 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
         status={status}
         getSubRows={getSubRows}
       />
-      {hasPermissions("update:experiences") && (
+      {/* EXPERIENCE */}
+      {hasPermissions("write:levels") && (
+        <NewLevelModal
+          isOpen={isAddLevelOpen}
+          handleClose={handleCloseAddLevel}
+          experience={addLevelContext}
+        />
+      )}
+      {hasPermissions("write:features") && (
         <NewExperienceFeatureModal
           isOpen={isAddFeatureOpen}
           handleClose={handleCloseAddFeature}
@@ -170,6 +206,16 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
             isOpen={isOpenDelete}
             handleClose={handleCloseDelete}
             experience={deleteContext}
+          />
+        </>
+      )}
+      {/* LEVEL */}
+      {hasPermissions("delete:levels") && (
+        <>
+          <DeleteLevelModal
+            isOpen={isOpenDeleteLevel}
+            handleClose={handleCloseDeleteLevel}
+            level={deleteLevelContext}
           />
         </>
       )}
