@@ -21,6 +21,7 @@ import { useModal } from "utils/hooks/useModal";
 import DeleteExperienceModal from "./components/ExperienceModal/DeleteExperienceModal";
 import EditExperienceModal from "./components/ExperienceModal/EditExperienceModal";
 import NewExperienceFeatureModal from "./components/FeatureModal/NewExperienceFeatureModal";
+import NewLevelFeatureModal from "./components/FeatureModal/NewLevelFeatureModal";
 import DeleteLevelModal from "./components/LevelModal/DeleteLevelModal";
 import NewLevelModal from "./components/LevelModal/NewLevelModal";
 import ExperiencesActionsFormatter from "./formatters/ExperiencesActionsFormatter";
@@ -84,6 +85,12 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
     handleOpen: handleOpenDeleteLevel,
     context: deleteLevelContext,
   } = useModal<LevelsType>();
+  const {
+    isOpen: isAddLevelFeatureOpen,
+    handleClose: handleCloseAddLevelFeature,
+    handleOpen: handleOpenAddLevelFeature,
+    context: addLevelFeatureContext,
+  } = useModal<LevelsType>();
 
   const columns: TableColumn<ExperiencesType>[] = [
     {
@@ -136,7 +143,7 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
       Cell: (cell: CellProps<LevelsType>) => (
         <LevelActtionsFormatter
           {...cell}
-          handleOpenAddFeature={() => {}}
+          handleOpenAddFeature={handleOpenAddLevelFeature}
           handleOpenEdit={() => {}}
           handleOpenDelete={handleOpenDeleteLevel}
         />
@@ -210,6 +217,13 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
         </>
       )}
       {/* LEVEL */}
+      {hasPermissions("write:features") && (
+        <NewLevelFeatureModal
+          isOpen={isAddLevelFeatureOpen}
+          handleClose={handleCloseAddLevelFeature}
+          level={addLevelFeatureContext}
+        />
+      )}
       {hasPermissions("delete:levels") && (
         <>
           <DeleteLevelModal
