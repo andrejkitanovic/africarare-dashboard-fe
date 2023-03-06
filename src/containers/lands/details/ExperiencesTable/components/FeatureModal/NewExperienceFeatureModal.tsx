@@ -55,6 +55,9 @@ const NewExperienceFeatureModal = ({
         submitStatus={status}
         handleSubmit={handleSubmit}
         handleClose={handleClose}
+        addedFeatures={
+          experience?.features?.map((feature) => feature.type) ?? []
+        }
       />
     </Dialog>
   );

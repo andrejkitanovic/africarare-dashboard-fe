@@ -118,12 +118,17 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
       Header: intl.formatMessage({ id: "EXPERIENCES.TABLE.NAME" }),
     },
     {
+      //@ts-expect-error
+      accessor: "scene",
+      Header: intl.formatMessage({ id: "EXPERIENCES.TABLE.SCENE" }),
+    },
+    {
       accessor: "features",
       Header: intl.formatMessage({ id: "EXPERIENCES.TABLE.FEATURES" }),
       Cell: ({ value }: CellProps<ExperiencesType>) => (
-        <Stack spacing={1} direction="row">
-          {value.map((feature: FeaturesType) => (
-            <FeatureFormatter type={feature.type} />
+        <Stack direction="row" sx={{ flexWrap: "wrap" }}>
+          {value.map((feature: FeaturesType, i: number) => (
+            <FeatureFormatter type={feature.type} sx={{ mr: 0.5, mb: 0.5 }} />
           ))}
         </Stack>
       ),

@@ -2,7 +2,7 @@ import { LoadingButton } from "@mui/lab";
 import { Button, DialogActions, DialogContent } from "@mui/material";
 import { MutationStatus } from "@tanstack/react-query";
 import { Formik, Form as FormikForm } from "formik";
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import * as yup from "yup";
 
@@ -17,6 +17,7 @@ interface IFeatureForm {
   handleClose: () => void;
   initialValues?: FeatureFormValues;
   submitStatus?: MutationStatus;
+  addedFeatures?: FeaturesTypeType[];
 }
 
 const FeatureForm: FC<IFeatureForm> = ({
@@ -26,26 +27,62 @@ const FeatureForm: FC<IFeatureForm> = ({
     type: null,
   },
   submitStatus,
+  addedFeatures,
 }) => {
   const intl = useIntl();
   const schema = yup.object({
     type: yup.string().required().nullable(),
   });
 
-  const featureTypeOptions = [
-    {
-      value: "access",
-      label: intl.formatMessage({ id: "FEATURES.ACCESS" }),
-    },
-    {
-      value: "chatlog",
-      label: intl.formatMessage({ id: "FEATURES.CHATLOG" }),
-    },
-    {
-      value: "experience-avatars",
-      label: intl.formatMessage({ id: "FEATURES.EXPERIENCE_AVATARS" }),
-    },
-  ];
+  const featureTypeOptions = useMemo(() => {
+    const allFeatures = [
+      {
+        value: "access",
+        label: intl.formatMessage({ id: "FEATURES.ACCESS" }),
+      },
+      {
+        value: "portal",
+        label: intl.formatMessage({ id: "FEATURES.PORTAL" }),
+      },
+      {
+        value: "leaderboard",
+        label: intl.formatMessage({ id: "FEATURES.LEADERBOARD" }),
+      },
+      {
+        value: "chatlog",
+        label: intl.formatMessage({ id: "FEATURES.CHATLOG" }),
+      },
+      {
+        value: "restricted-pen-drawing",
+        label: intl.formatMessage({ id: "FEATURES.RESTRICTED_PEN_DRAWING" }),
+      },
+      {
+        value: "experience-avatars",
+        label: intl.formatMessage({ id: "FEATURES.EXPERIENCE_AVATARS" }),
+      },
+      {
+        value: "presentation",
+        label: intl.formatMessage({ id: "FEATURES.PRESENTATION" }),
+      },
+      {
+        value: "participation",
+        label: intl.formatMessage({ id: "FEATURES.PARTICIPATION" }),
+      },
+      {
+        value: "info-pin",
+        label: intl.formatMessage({ id: "FEATURES.INFO_PIN" }),
+      },
+    ];
+
+    if (addedFeatures?.length) {
+      return allFeatures.filter(
+        //@ts-expect-error
+        (feature) => !addedFeatures.includes(feature.value)
+      );
+    }
+
+    return allFeatures;
+  }, [addedFeatures, intl]);
 
   return (
     <Formik

@@ -55,6 +55,7 @@ const NewLevelFeatureModal = ({
         submitStatus={status}
         handleSubmit={handleSubmit}
         handleClose={handleClose}
+        addedFeatures={level?.features?.map((feature) => feature.type) ?? []}
       />
     </Dialog>
   );
