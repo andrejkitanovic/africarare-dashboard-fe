@@ -1,4 +1,4 @@
-import { Paper } from "@mui/material";
+import { Box, Paper, Stack, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useParams } from "react-router-dom";
@@ -23,13 +23,42 @@ const ExperiencesPage = () => {
     <>
       <Paper>
         <LandsDetailsHeader />
-        <img
-          src={land?.previewImage || PreviewImageDefaultPNG}
-          alt="land"
-          height="400"
-          width="100%"
-          style={{ objectFit: "cover", maxHeight: "20vw" }}
-        />
+        <Stack direction="row">
+          <img
+            src={land?.previewImage || PreviewImageDefaultPNG}
+            alt="land"
+            height="400"
+            width="100%"
+            style={{ objectFit: "cover", maxHeight: "20vw", maxWidth: "70%" }}
+          />
+          <Stack
+            direction="column"
+            textAlign="center"
+            sx={{ width: "30%", p: 3 }}
+            justifyContent="space-between"
+          >
+            <Box>
+              <Typography fontWeight="bold" fontSize="20px" mb={1}>
+                Page Views
+              </Typography>
+              <Typography fontSize="18px">-</Typography>
+            </Box>
+
+            <Box>
+              <Typography fontWeight="bold" fontSize="20px" mb={1}>
+                Unique Visitors
+              </Typography>
+              <Typography fontSize="18px">-</Typography>
+            </Box>
+
+            <Box>
+              <Typography fontWeight="bold" fontSize="20px" mb={1}>
+                Live Users
+              </Typography>
+              <Typography fontSize="18px">0/20</Typography>
+            </Box>
+          </Stack>
+        </Stack>
       </Paper>
 
       <Paper sx={{ mt: 2 }}>
