@@ -1,4 +1,4 @@
-import { Divider, Drawer, Stack, Typography } from "@mui/material";
+import { Drawer, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { FormattedMessage } from "react-intl";
 
@@ -7,8 +7,9 @@ import { Feature } from "api/generated/models/Feature";
 import { featureBackgroundColor } from "../../formatters/FeaturesFormatter";
 
 interface Props {
+  isOpen: boolean;
   onClose: () => void;
-  feature: Feature | null;
+  feature: Feature | undefined;
 }
 
 const featureTitleFormatted = {
@@ -25,7 +26,7 @@ const featureTitleFormatted = {
   presentation: <FormattedMessage id="FEATURES.PRESENTATION" />,
 };
 
-const FeatureDrawer = ({ onClose, feature }: Props) => {
+const FeatureDrawer = ({ isOpen, onClose, feature }: Props) => {
   return (
     <Drawer
       PaperProps={{
@@ -38,7 +39,7 @@ const FeatureDrawer = ({ onClose, feature }: Props) => {
       }}
       variant="temporary"
       anchor="right"
-      open={Boolean(feature)}
+      open={isOpen}
       onClose={onClose}
       data-cy="user-drawer"
     >
@@ -57,8 +58,6 @@ const FeatureDrawer = ({ onClose, feature }: Props) => {
 
       <Box sx={{ p: { xs: 2, sm: 3 } }}>
         <Stack direction="row" spacing={2} sx={{ mt: 2, p: 1 }}></Stack>
-
-        <Divider sx={{ my: 3, mx: 1 }} />
       </Box>
     </Drawer>
   );

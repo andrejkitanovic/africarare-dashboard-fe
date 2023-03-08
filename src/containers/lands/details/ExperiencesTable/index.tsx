@@ -4,7 +4,7 @@ import {
   Search as SearchIcon,
 } from "@mui/icons-material";
 import { Grid, InputAdornment, Link, Stack, TextField } from "@mui/material";
-import React, { FC, useCallback, useState } from "react";
+import React, { FC, useCallback } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { CellProps } from "react-table";
 
@@ -12,7 +12,6 @@ import { getExperiences } from "api/experiences";
 import { experiencesKeys } from "api/experiences/queries";
 import { ExperiencesType } from "api/experiences/types";
 import { FeaturesType } from "api/features/types";
-import { Feature } from "api/generated";
 import { LevelsType } from "api/levels/types";
 import { hasPermissions } from "components/stores/UserStore";
 import Table, { TableColumn } from "components/Table";
@@ -54,6 +53,14 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
     filters
   );
 
+  // Feature Drawer
+  const {
+    isOpen: isFeatureDrawerOpen,
+    handleClose: handleCloseFeatureDrawer,
+    handleOpen: handleOpenFeatureDrawer,
+    context: featureContext,
+  } = useModal<FeaturesType>();
+
   // EXPERIECNE
   const {
     isOpen: isAddLevelOpen,
@@ -79,10 +86,6 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
     handleOpen: handleOpenDelete,
     context: deleteContext,
   } = useModal<ExperiencesType>();
-
-  const [featureDrawerContext, setFeatureDrawerContext] =
-    useState<Feature | null>(null);
-
   // LEVEL
   const {
     isOpen: isOpenDeleteLevel,
@@ -146,7 +149,7 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
               key={i}
               type={feature.type}
               sx={{ mr: 0.5, mb: 0.5 }}
-              onClick={() => setFeatureDrawerContext(feature)}
+              onClick={() => handleOpenFeatureDrawer(feature)}
             />
           ))}
         </Stack>
@@ -210,8 +213,9 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
         getSubRows={getSubRows}
       />
       <FeatureDrawer
-        feature={featureDrawerContext}
-        onClose={() => setFeatureDrawerContext(null)}
+        isOpen={isFeatureDrawerOpen}
+        onClose={() => handleCloseFeatureDrawer()}
+        feature={featureContext}
       />
       {/* EXPERIENCE */}
       {hasPermissions("write:levels") && (

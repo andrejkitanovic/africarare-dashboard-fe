@@ -41,14 +41,14 @@ const ExperiencesPage = () => {
               <Typography fontWeight="bold" fontSize="20px" mb={1}>
                 Page Views
               </Typography>
-              <Typography fontSize="18px">-</Typography>
+              <Typography fontSize="18px">0</Typography>
             </Box>
 
             <Box>
               <Typography fontWeight="bold" fontSize="20px" mb={1}>
                 Unique Visitors
               </Typography>
-              <Typography fontSize="18px">-</Typography>
+              <Typography fontSize="18px">0</Typography>
             </Box>
 
             <Box>
