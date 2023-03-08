@@ -3,7 +3,7 @@ import {
   KeyboardArrowRight,
   Search as SearchIcon,
 } from "@mui/icons-material";
-import { Grid, InputAdornment, Stack, TextField } from "@mui/material";
+import { Grid, InputAdornment, Link, Stack, TextField } from "@mui/material";
 import React, { FC, useCallback } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { CellProps } from "react-table";
@@ -116,6 +116,15 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
     {
       accessor: "name",
       Header: intl.formatMessage({ id: "EXPERIENCES.TABLE.NAME" }),
+      Cell: ({ row }) => (
+        <Link
+          href="https://ubuntu.land"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {row.original.name}
+        </Link>
+      ),
     },
     {
       //@ts-expect-error
@@ -128,7 +137,11 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
       Cell: ({ value }: CellProps<ExperiencesType>) => (
         <Stack direction="row" sx={{ flexWrap: "wrap" }}>
           {value.map((feature: FeaturesType, i: number) => (
-            <FeatureFormatter type={feature.type} sx={{ mr: 0.5, mb: 0.5 }} />
+            <FeatureFormatter
+              key={i}
+              type={feature.type}
+              sx={{ mr: 0.5, mb: 0.5 }}
+            />
           ))}
         </Stack>
       ),

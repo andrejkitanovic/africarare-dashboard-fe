@@ -113,5 +113,15 @@
   "USERS.USERS_FORM.NEW_FORM_TITLE": "Invite User",
   "USER_SIDEBAR.HEADER": "User Profile",
   "USER_SIDEBAR.MY_PROFILE.HEADER": "My Profile",
-  "USER_SIDEBAR.MY_PROFILE.SUBHEADER": "Profile settings"
+  "USER_SIDEBAR.MY_PROFILE.SUBHEADER": "Profile settings",
+  "DOCUMENT.DESCRIPTION": "Description",
+  "USERS.DELETE.TITLE": "Delete User",
+  "USERS.DELETE.WARNING": "Are you sure you want to delete user {userName}?",
+  "ORGANISATIONS.TABLE.ACTIONS.DISABLE": "Disable",
+  "ORGANISATIONS.EDIT.TITLE": "Edit Organisation",
+  "GLOBAL.POSTCODE": "Postcode",
+  "ORGANISATIONS.DELETE.TITLE": "Delete Organisation",
+  "ORGANISATIONS.DELETE.WARNING": "Are you sure you want to delete organisation {organisationName}?",
+  "LANDS.DELETE.TITLE": "Delete Land",
+  "LANDS.DELETE.WARNING": "Are you sure you want to delete land {landName}?"
 }
