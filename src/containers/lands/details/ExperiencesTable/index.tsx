@@ -4,7 +4,7 @@ import {
   Search as SearchIcon,
 } from "@mui/icons-material";
 import { Grid, InputAdornment, Link, Stack, TextField } from "@mui/material";
-import React, { FC, useCallback } from "react";
+import React, { FC, useCallback, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import { CellProps } from "react-table";
 
@@ -12,6 +12,7 @@ import { getExperiences } from "api/experiences";
 import { experiencesKeys } from "api/experiences/queries";
 import { ExperiencesType } from "api/experiences/types";
 import { FeaturesType } from "api/features/types";
+import { Feature } from "api/generated";
 import { LevelsType } from "api/levels/types";
 import { hasPermissions } from "components/stores/UserStore";
 import Table, { TableColumn } from "components/Table";
@@ -20,6 +21,7 @@ import { useModal } from "utils/hooks/useModal";
 
 import DeleteExperienceModal from "./components/ExperienceModal/DeleteExperienceModal";
 import EditExperienceModal from "./components/ExperienceModal/EditExperienceModal";
+import FeatureDrawer from "./components/FeatureDrawer/FeatureDrawer";
 import NewExperienceFeatureModal from "./components/FeatureModal/NewExperienceFeatureModal";
 import NewLevelFeatureModal from "./components/FeatureModal/NewLevelFeatureModal";
 import DeleteLevelModal from "./components/LevelModal/DeleteLevelModal";
@@ -77,6 +79,9 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
     handleOpen: handleOpenDelete,
     context: deleteContext,
   } = useModal<ExperiencesType>();
+
+  const [featureDrawerContext, setFeatureDrawerContext] =
+    useState<Feature | null>(null);
 
   // LEVEL
   const {
@@ -141,6 +146,7 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
               key={i}
               type={feature.type}
               sx={{ mr: 0.5, mb: 0.5 }}
+              onClick={() => setFeatureDrawerContext(feature)}
             />
           ))}
         </Stack>
@@ -202,6 +208,10 @@ const ExperiencesTable: FC<IExperiencesTable> = ({ landId }) => {
         pagination={paginationOptions}
         status={status}
         getSubRows={getSubRows}
+      />
+      <FeatureDrawer
+        feature={featureDrawerContext}
+        onClose={() => setFeatureDrawerContext(null)}
       />
       {/* EXPERIENCE */}
       {hasPermissions("write:levels") && (

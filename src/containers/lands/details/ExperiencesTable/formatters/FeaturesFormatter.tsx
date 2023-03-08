@@ -4,7 +4,7 @@ import { FC } from "react";
 
 import { FeaturesTypeType } from "api/features/types";
 
-const featureBackgroundColor = {
+export const featureBackgroundColor = {
   access: "#3481d6",
   chatlog: "#ff0051",
   "experience-avatars": "#F0A631",
