@@ -123,5 +123,7 @@
   "ORGANISATIONS.DELETE.TITLE": "Delete Organisation",
   "ORGANISATIONS.DELETE.WARNING": "Are you sure you want to delete organisation {organisationName}?",
   "LANDS.DELETE.TITLE": "Delete Land",
-  "LANDS.DELETE.WARNING": "Are you sure you want to delete land {landName}?"
+  "LANDS.DELETE.WARNING": "Are you sure you want to delete land {landName}?",
+  "FEATURE.DELETE.TITLE": "Delete Feature",
+  "FEATURE.DELETE.WARNING": "Are you sure you want to delete feature {feature}?"
 }

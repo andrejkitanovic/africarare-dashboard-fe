@@ -1,4 +1,4 @@
-import { Drawer, Stack, Typography } from "@mui/material";
+import { Button, Drawer, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { FormattedMessage } from "react-intl";
 
@@ -10,9 +10,10 @@ interface Props {
   isOpen: boolean;
   onClose: () => void;
   feature: Feature | undefined;
+  handleOpenDelete: (ctx?: Feature) => void;
 }
 
-const featureTitleFormatted = {
+export const featureTitleFormatted = {
   access: <FormattedMessage id="FEATURES.ACCESS" />,
   chatlog: <FormattedMessage id="FEATURES.CHATLOG" />,
   "experience-avatars": <FormattedMessage id="FEATURES.EXPERIENCE_AVATARS" />,
@@ -26,7 +27,12 @@ const featureTitleFormatted = {
   presentation: <FormattedMessage id="FEATURES.PRESENTATION" />,
 };
 
-const FeatureDrawer = ({ isOpen, onClose, feature }: Props) => {
+const FeatureDrawer = ({
+  isOpen,
+  onClose,
+  feature,
+  handleOpenDelete,
+}: Props) => {
   return (
     <Drawer
       PaperProps={{
@@ -43,22 +49,44 @@ const FeatureDrawer = ({ isOpen, onClose, feature }: Props) => {
       onClose={onClose}
       data-cy="user-drawer"
     >
-      <Box
-        sx={{
-          background: feature?.type
-            ? featureBackgroundColor[feature.type]
-            : "#000",
-          p: 1,
-        }}
-      >
-        <Typography variant="h4" sx={{ p: 1 }}>
-          {feature?.type ? featureTitleFormatted[feature?.type] : ""}
-        </Typography>
-      </Box>
+      <Stack direction="column" sx={{ height: "100%" }}>
+        <Box
+          sx={{
+            background: feature?.type
+              ? featureBackgroundColor[feature.type]
+              : "#000",
+            p: 1,
+          }}
+        >
+          <Typography variant="h4" sx={{ p: 1 }}>
+            {feature?.type ? featureTitleFormatted[feature?.type] : ""}
+          </Typography>
+        </Box>
 
-      <Box sx={{ p: { xs: 2, sm: 3 } }}>
-        <Stack direction="row" spacing={2} sx={{ mt: 2, p: 1 }}></Stack>
-      </Box>
+        {/* CONTENT */}
+        <Box></Box>
+
+        {/* FOOTER */}
+        <Stack
+          direction="row"
+          spacing={2}
+          alignItems="center"
+          justifyContent="space-between"
+          sx={{ mt: "auto", p: { xs: 2, sm: 3 } }}
+        >
+          <Button
+            sx={{ width: "50%" }}
+            color="error"
+            variant="contained"
+            onClick={() => handleOpenDelete(feature)}
+          >
+            <FormattedMessage id="GLOBAL.DELETE" />
+          </Button>
+          <Button sx={{ width: "50%" }} variant="contained">
+            <FormattedMessage id="GLOBAL.SAVE" />
+          </Button>
+        </Stack>
+      </Stack>
     </Drawer>
   );
 };
