@@ -5,6 +5,7 @@ import { FormattedMessage } from "react-intl";
 import { Feature } from "api/generated/models/Feature";
 
 import { featureBackgroundColor } from "../../formatters/FeaturesFormatter";
+import FeatureAccessForm from "./SingleFeatureForm/FeatureAccessForm";
 
 interface Props {
   isOpen: boolean;
@@ -64,7 +65,11 @@ const FeatureDrawer = ({
         </Box>
 
         {/* CONTENT */}
-        <Box></Box>
+        <Box sx={{ p: { xs: 2, sm: 3 } }}>
+          {feature?.type === "access" && (
+            <FeatureAccessForm handleSubmit={() => {}} />
+          )}
+        </Box>
 
         {/* FOOTER */}
         <Stack
